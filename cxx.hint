@@ -1,5 +1,5 @@
 category: Audio
-requires: cygwin libFLAC8
+requires: libFLAC8
 external-source: flac
 sdesc: "Free Lossless Audio Codec (C++ library)"
 ldesc: "FLAC stands for Free Lossless Audio Codec, an audio format 

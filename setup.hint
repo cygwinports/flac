@@ -1,5 +1,5 @@
 category: Audio
-requires: cygwin libFLAC8
+requires: libFLAC8
 sdesc: "Free Lossless Audio Codec (utilities)"
 ldesc: "FLAC stands for Free Lossless Audio Codec, an audio format 
 similar to MP3, but lossless, meaning that audio is compressed in FLAC 

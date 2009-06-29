@@ -1,5 +1,5 @@
 category: Audio
-requires: cygwin glib gtk+ libFLAC8 libiconv2 xmms
+requires: glib gtk+ libFLAC8 libiconv2 xmms
 external-source: flac
 sdesc: "Free Lossless Audio Codec (XMMS input plugin)"
 ldesc: "FLAC stands for Free Lossless Audio Codec, an audio format 
