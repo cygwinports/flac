@@ -1,0 +1,60 @@
+--- origsrc/flac-1.3.0/configure.ac	2013-05-27 03:08:57.218577500 -0500
++++ src/flac-1.3.0/configure.ac	2014-12-02 00:08:38.052054200 -0600
+@@ -128,13 +128,13 @@ AM_CONDITIONAL(FLaC__CPU_PPC_SPE, test "
+ 
+ os_is_windows=no
+ case "$host" in
+-	*-*-cygwin|*mingw*)
++	*mingw*)
+ 		# define this variable for enabling strict exports with libtool; for now, it's supported by Win32 and OS/2
+ 		LT_NO_UNDEFINED="-no-undefined"
+ 		CPPFLAGS="-D__MSVCRT_VERSION__=0x0601 $CPPFLAGS"
+ 		os_is_windows=yes
+ 		;;
+-	*emx*)
++	*-cygwin*|*emx*)
+ 		LT_NO_UNDEFINED="-no-undefined"
+ 		;;
+ 	*)
+--- origsrc/flac-1.3.0/src/libFLAC/stream_decoder.c	2013-05-26 04:30:33.936201600 -0500
++++ src/flac-1.3.0/src/libFLAC/stream_decoder.c	2014-12-02 00:10:21.925744500 -0600
+@@ -1269,7 +1269,7 @@ FILE *get_binary_stdin_(void)
+ 	_setmode(_fileno(stdin), _O_BINARY);
+ #elif defined __CYGWIN__
+ 	/* almost certainly not needed for any modern Cygwin, but let's be safe... */
+-	setmode(_fileno(stdin), _O_BINARY);
++	_setmode(fileno(stdin), _O_BINARY);
+ #elif defined __EMX__
+ 	setmode(fileno(stdin), O_BINARY);
+ #endif
+--- origsrc/flac-1.3.0/src/libFLAC/stream_encoder.c	2013-05-26 04:30:33.936201600 -0500
++++ src/flac-1.3.0/src/libFLAC/stream_encoder.c	2014-12-02 00:10:44.472107500 -0600
+@@ -4324,7 +4324,7 @@ FILE *get_binary_stdout_(void)
+ 	_setmode(_fileno(stdout), _O_BINARY);
+ #elif defined __CYGWIN__
+ 	/* almost certainly not needed for any modern Cygwin, but let's be safe... */
+-	setmode(_fileno(stdout), _O_BINARY);
++	_setmode(fileno(stdout), _O_BINARY);
+ #elif defined __EMX__
+ 	setmode(fileno(stdout), O_BINARY);
+ #endif
+--- origsrc/flac-1.3.0/src/share/grabbag/file.c	2013-05-26 04:30:33.940201500 -0500
++++ src/flac-1.3.0/src/share/grabbag/file.c	2014-12-02 00:09:57.537147500 -0600
+@@ -166,7 +166,7 @@ FILE *grabbag__file_get_binary_stdin(voi
+ 	_setmode(_fileno(stdin), _O_BINARY);
+ #elif defined __CYGWIN__
+ 	/* almost certainly not needed for any modern Cygwin, but let's be safe... */
+-	setmode(_fileno(stdin), _O_BINARY);
++	_setmode(fileno(stdin), _O_BINARY);
+ #elif defined __EMX__
+ 	setmode(fileno(stdin), O_BINARY);
+ #endif
+@@ -184,7 +184,7 @@ FILE *grabbag__file_get_binary_stdout(vo
+ 	_setmode(_fileno(stdout), _O_BINARY);
+ #elif defined __CYGWIN__
+ 	/* almost certainly not needed for any modern Cygwin, but let's be safe... */
+-	setmode(_fileno(stdout), _O_BINARY);
++	_setmode(fileno(stdout), _O_BINARY);
+ #elif defined __EMX__
+ 	setmode(fileno(stdout), O_BINARY);
+ #endif

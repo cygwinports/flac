@@ -1,0 +1,28 @@
+NAME="flac"
+VERSION=1.3.0
+RELEASE=1
+CATEGORY="Audio"
+SUMMARY="Free Lossless Audio Codec"
+DESCRIPTION="FLAC stands for Free Lossless Audio Codec, an audio format similar
+to MP3, but lossless, meaning that audio is compressed in FLAC without any loss
+in quality. This is similar to how Zip works, except with FLAC you will get
+much better compression because it is designed specifically for audio, and you
+can play back compressed FLAC files in your favorite player just like you would
+an MP3 file."
+HOMEPAGE="https://xiph.org/flac/"
+SRC_URI="http://downloads.xiph.org/releases/flac/flac-${VERSION}.tar.xz"
+PATCH_URI="1.3.0-cygwin.patch"
+
+PKG_NAMES="flac libFLAC8 libFLAC++6 flac-devel flac-docs"
+flac_CONTENTS='--exclude=html usr/bin/*.exe usr/share/doc/ usr/share/man/'
+libFLAC8_CATEGORY="Libs"
+libFLAC8_CONTENTS="usr/bin/cygFLAC-8.dll"
+libFLAC__6_CATEGORY="Libs"
+libFLAC__6_CONTENTS="usr/bin/cygFLAC++-6.dll"
+flac_devel_CATEGORY="Libs"
+flac_devel_CONTENTS="usr/include/ usr/lib/lib* usr/lib/pkgconfig/
+                 usr/share/aclocal/"
+flac_docs_CATEGORY="Doc"
+flac_docs_CONTENTS="usr/share/doc/flac/html/"
+
+MAKEOPTS+=" docdir=/usr/share/doc/flac/html"
